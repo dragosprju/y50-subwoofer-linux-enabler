@@ -1,0 +1,13 @@
+[Unit]
+Description=Lenovo Y50 Subwoofer Caretaker
+Requires=pulseaudio.service
+After=pulseaudio.service
+
+[Service]
+Type=simple
+ExecStart=/usr/bin/python /opt/subwoofer.py
+ExecStopPost=/usr/bin/python /opt/subwoofer.py exit
+Restart=always
+
+[Install]
+WantedBy=default.target

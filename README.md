@@ -1,4 +1,4 @@
-# Lenovo Y50 Subwoofer Fix / Enabler for Linux
+# Lenovo Y50 Subwoofer Enabler for Linux
 
 Hi!
 
@@ -30,5 +30,11 @@ Try not to reinstall twice as it appends the needed modifications to `/etc/sudoe
 The script doesn't take care of the subwoofer when you suspend the laptop. Therefore, a crack is heard from the subwoofer when suspending.
 
 The script is also a dirty way to fix things. A more resposible person would report the problem as a bug and cooperate with the people related to the component that has the issue. (`alsa` I believe)
+
+## Related links
+
+http://superuser.com/questions/945110/how-do-i-make-my-lenovo-y50s-subwoofer-work-on-linux
+http://superuser.com/questions/975219/how-to-disable-power-saving-on-my-lenovo-y50s-subwoofer-audio-pins
+https://www.reddit.com/r/linuxquestions/comments/3ejkbe/how_do_i_make_my_lenovo_y50s_subwoofer_work_on/
 
 Have fun! 

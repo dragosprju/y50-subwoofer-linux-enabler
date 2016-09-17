@@ -34,7 +34,9 @@ The script is also a dirty way to fix things. A more resposible person would rep
 ## Related links
 
 http://superuser.com/questions/945110/how-do-i-make-my-lenovo-y50s-subwoofer-work-on-linux
+
 http://superuser.com/questions/975219/how-to-disable-power-saving-on-my-lenovo-y50s-subwoofer-audio-pins
+
 https://www.reddit.com/r/linuxquestions/comments/3ejkbe/how_do_i_make_my_lenovo_y50s_subwoofer_work_on/
 
 Have fun! 

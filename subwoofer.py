@@ -10,10 +10,9 @@ from subprocess import call
 # Settings #
 ############
 speakerBalance = 0
-headphonesBalance = +8
+headphonesBalance = 0
 subwooferBalance = -25
 extraVolume = -11
-#userId = 0
 
 # These are needed so the detection of volume change / headphones plug in or out not be done
 # for all of the enabled audio devices. Change to the alternatives if subwoofer doesn't enable

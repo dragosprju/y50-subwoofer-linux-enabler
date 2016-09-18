@@ -10,7 +10,7 @@ from subprocess import call
 # Settings #
 ############
 speakerBalance = 0
-headphonesBalance = +8
+headphonesBalance = 0
 subwooferBalance = -25
 extraVolume = -11
 

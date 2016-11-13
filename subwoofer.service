@@ -1,7 +1,5 @@
 [Unit]
 Description=Lenovo Y50 Subwoofer Caretaker
-Requires=pulseaudio.service
-After=pulseaudio.service
 
 [Service]
 Type=simple

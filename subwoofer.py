@@ -3,6 +3,8 @@
 import subprocess
 import atexit
 import sys
+import os
+import time
 
 from subprocess import call
 
@@ -13,6 +15,7 @@ speakerBalance = 0
 headphonesBalance = 0
 subwooferBalance = -25
 extraVolume = -11
+pulseaudio_detect_intervals = 5 # no of seconds between pulseaudio detects
 
 # These are needed so the detection of volume change / headphones plug in or out not be done
 # for all of the enabled audio devices. Change to the alternatives if subwoofer doesn't enable
@@ -233,12 +236,24 @@ if __name__ == "__main__":
     sys.exit(0)
   atexit.register(on_exit)
 
+  pulseaudio_detected = False
+  while pulseaudio_detected is False:
+    pgrep = subprocess.Popen(["pgrep","-u",str(os.getuid()),"pulseaudio"], stdout=subprocess.PIPE)
+    for line in iter(pgrep.stdout.readline, ''):
+      if line.strip():
+        print "Pulseaudio detected"
+        pulseaudio_detected = True
+      else:
+        time.sleep(pulseaudio_detect_intervals)
+    if pgrep is not None:
+      pgrep.terminate()
+
   headphones_in_query()
   if headphones_in == False:
     enable_subwoofer()
     set_subwoofer()
     set_speakers()
-  
+
   pactl = subprocess.Popen(["pactl", "subscribe"], stdout=subprocess.PIPE)
   for line in iter(pactl.stdout.readline, ''):
     if "Event 'change' on sink #" + sinkNo in line:

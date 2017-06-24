@@ -67,7 +67,7 @@ def calculate_subwoofer_volume(spk_vol, balance):
   else:
     balL = balL - balance
     balR = 100
-  
+
   valL = 87 * spk_vol * balL / 100 / 100 + extraVolume
   valR = 87 * spk_vol * balR / 100 / 100 + extraVolume
 
@@ -77,7 +77,7 @@ def calculate_subwoofer_volume(spk_vol, balance):
 
 def set_subwoofer():
   vol = get_biggest_volume()
-  subVols = calculate_subwoofer_volume(vol, subwooferBalance)   
+  subVols = calculate_subwoofer_volume(vol, subwooferBalance)
   set_subwoofer_volume(subVols)
 
 # Speaker part
@@ -97,8 +97,8 @@ def calculate_speaker_balance(spk_vol, balance):
 
   valL = spk_vol * balL / 100
   valR = spk_vol * balR / 100
-  
-  return [valL, valR]   
+
+  return [valL, valR]
 
 def set_speaker_volumes(volumes):
   volumes = calibrate100(volumes)
@@ -116,8 +116,8 @@ def set_speakers():
     headphones_set = False
 
   vol = get_biggest_volume()
-  spkVols = calculate_speaker_balance(vol, speakerBalance)   
-  set_speaker_volumes( spkVols)  
+  spkVols = calculate_speaker_balance(vol, speakerBalance)
+  set_speaker_volumes( spkVols)
 
 def get_biggest_volume():
   volumes = get_volumes()
@@ -136,8 +136,8 @@ def get_volumes():
     if '%' in line:
       vol = line.split('[')[1].split('%]')[0]
       output.append(int(vol))
-  
-  return output     
+
+  return output
 
 # Headphones part
 #################
@@ -153,14 +153,14 @@ def set_headphones():
     speakers_set = False
 
   vol = get_biggest_volume()
-  spkVols = calculate_speaker_balance(vol, headphonesBalance)   
-  set_speaker_volumes(spkVols)   
+  spkVols = calculate_speaker_balance(vol, headphonesBalance)
+  set_speaker_volumes(spkVols)
 
 def headphones_in_query():
   global headphones_in
   amixer = subprocess.Popen(["amixer", "-c", str(devId), "cget", "numid=22"], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
 
-  i = 0  
+  i = 0
   count = False
   for line in iter(amixer.stdout.readline, ''):
     if "numid=22" in line:
@@ -172,9 +172,9 @@ def headphones_in_query():
         headphones_in = False
       elif "values=on" in line:
         headphones_in = True
-      break   
-  
-  amixer.terminate() 
+      break
+
+  amixer.terminate()
 
 def check_headphones():
   headphones_in_query()
@@ -201,22 +201,22 @@ def calibrate(volumes, limit):
   elif volumes[1] < 0:
     volumes[1] = 0
 
-  return [volumes[0], volumes[1]] 
-  
+  return [volumes[0], volumes[1]]
+
 def calibrate100(volumes):
   return calibrate(volumes, 100)
 
 def calibrate87(volumes):
-  return calibrate(volumes, 87)  
+  return calibrate(volumes, 87)
 
-def check_volume(): 
+def check_volume():
   global curr_volume
   new_volume = get_biggest_volume()
 
   if curr_volume != new_volume:
     curr_volume = new_volume
     print "Volume change detected: ", curr_volume
-    
+
     if headphones_in == False:
       set_subwoofer()
 
@@ -259,7 +259,7 @@ if __name__ == "__main__":
     if "Event 'change' on sink #" + sinkNo in line:
       check_headphones()
       check_volume()
-      
+
 
 
 

@@ -5,6 +5,6 @@ echo 'guest ALL=NOPASSWD: /usr/bin/hda-verb' | sudo EDITOR='tee -a' visudo -f /e
 sudo cp ./subwoofer.py /opt/subwoofer.py
 sudo chmod +x /opt/subwoofer.py
 sudo cp ./subwoofer.service /etc/systemd/system/subwoofer.service
-systemctl daemon-reload
-systemctl enable subwoofer.service
+sudo systemctl daemon-reload
+sudo systemctl enable subwoofer.service
 echo "Please restart the computer to start the 'subwoofer' service."

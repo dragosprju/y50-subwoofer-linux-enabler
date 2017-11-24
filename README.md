@@ -27,7 +27,7 @@ Try not to reinstall twice as it appends the needed modifications to `/etc/sudoe
 
 ## Needed improvements
 
-The script doesn't take care of the subwoofer when you suspend the laptop. Therefore, a crack is heard from the subwoofer when suspending.
+~~The script doesn't take care of the subwoofer when you suspend the laptop. Therefore, a crack is heard from the subwoofer when suspending.~~ (now does accordingly)
 
 The script is also a dirty way to fix things. A more resposible person would report the problem as a bug and cooperate with the people related to the component that has the issue. (`alsa` I believe)
 

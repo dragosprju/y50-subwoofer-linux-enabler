@@ -11,11 +11,16 @@ from subprocess import call
 ############
 # Settings #
 ############
+# For when you don't have headphones in and you want custom volume balance
 speakerBalance = 0
+# For when YOU DO have headphones in and you want custom volume balance
+# (broken debalanced headphones and whatnot)
 headphonesBalance = 0
-subwooferBalance = -25
-extraVolume = -11
-pulseaudio_detect_intervals = 5 # no of seconds between pulseaudio detects
+# This helps the subwoofer get the correct left/right stereo in so it sounds like
+subwooferBalance = -25		# Default: -25
+# This is extra volume for the subwoofer, independent of what stereo balance it gets as input
+extraVolume = 11 		# Default: -11. New default: 11; 
+pulseaudio_detect_intervals = 5 # Default: 5. No. of seconds between pulseaudio detects.
 
 # These are needed so the detection of volume change / headphones plug in or out not be done
 # for all of the enabled audio devices. Change to the alternatives if subwoofer doesn't enable
@@ -67,7 +72,7 @@ def calculate_subwoofer_volume(spk_vol, balance):
   else:
     balL = balL - balance
     balR = 100
-
+  
   valL = 87 * spk_vol * balL / 100 / 100 + extraVolume
   valR = 87 * spk_vol * balR / 100 / 100 + extraVolume
 
@@ -77,7 +82,7 @@ def calculate_subwoofer_volume(spk_vol, balance):
 
 def set_subwoofer():
   vol = get_biggest_volume()
-  subVols = calculate_subwoofer_volume(vol, subwooferBalance)
+  subVols = calculate_subwoofer_volume(vol, subwooferBalance)   
   set_subwoofer_volume(subVols)
 
 # Speaker part
@@ -97,8 +102,8 @@ def calculate_speaker_balance(spk_vol, balance):
 
   valL = spk_vol * balL / 100
   valR = spk_vol * balR / 100
-
-  return [valL, valR]
+  
+  return [valL, valR]   
 
 def set_speaker_volumes(volumes):
   volumes = calibrate100(volumes)
@@ -116,8 +121,8 @@ def set_speakers():
     headphones_set = False
 
   vol = get_biggest_volume()
-  spkVols = calculate_speaker_balance(vol, speakerBalance)
-  set_speaker_volumes( spkVols)
+  spkVols = calculate_speaker_balance(vol, speakerBalance)   
+  set_speaker_volumes( spkVols)  
 
 def get_biggest_volume():
   volumes = get_volumes()
@@ -136,8 +141,8 @@ def get_volumes():
     if '%' in line:
       vol = line.split('[')[1].split('%]')[0]
       output.append(int(vol))
-
-  return output
+  
+  return output     
 
 # Headphones part
 #################
@@ -153,14 +158,15 @@ def set_headphones():
     speakers_set = False
 
   vol = get_biggest_volume()
-  spkVols = calculate_speaker_balance(vol, headphonesBalance)
-  set_speaker_volumes(spkVols)
+  spkVols = calculate_speaker_balance(vol, headphonesBalance)   
+  set_speaker_volumes(spkVols)   
 
 def headphones_in_query():
   global headphones_in
+
   amixer = subprocess.Popen(["amixer", "-c", str(devId), "cget", "numid=22"], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
 
-  i = 0
+  i = 0  
   count = False
   for line in iter(amixer.stdout.readline, ''):
     if "numid=22" in line:
@@ -172,9 +178,9 @@ def headphones_in_query():
         headphones_in = False
       elif "values=on" in line:
         headphones_in = True
-      break
-
-  amixer.terminate()
+      break   
+  
+  amixer.terminate() 
 
 def check_headphones():
   headphones_in_query()
@@ -201,22 +207,22 @@ def calibrate(volumes, limit):
   elif volumes[1] < 0:
     volumes[1] = 0
 
-  return [volumes[0], volumes[1]]
-
+  return [volumes[0], volumes[1]] 
+  
 def calibrate100(volumes):
   return calibrate(volumes, 100)
 
 def calibrate87(volumes):
-  return calibrate(volumes, 87)
+  return calibrate(volumes, 87)  
 
-def check_volume():
+def check_volume(): 
   global curr_volume
   new_volume = get_biggest_volume()
 
   if curr_volume != new_volume:
     curr_volume = new_volume
     print "Volume change detected: ", curr_volume
-
+    
     if headphones_in == False:
       set_subwoofer()
 
@@ -225,13 +231,17 @@ def on_exit():
   if pactl is not None:
     pactl.terminate()
   disable_subwoofer()
-  sys.exit(0)
 
 ########
 # Main #
 ########
 if __name__ == "__main__":
-  if "exit" in sys.argv:
+  f = open("/home/dragos/args.log", "a")
+  f.write("\r\n")
+  f.write(str(sys.argv))
+  f.close()
+  if ("exit" in sys.argv) or (("pre" in sys.argv) and 
+    (("suspend" in sys.argv) or ("hibernate" in sys.argv) or ("hybrid-sleep" in sys.argv))):
     on_exit()
     sys.exit(0)
   atexit.register(on_exit)
@@ -247,6 +257,8 @@ if __name__ == "__main__":
         time.sleep(pulseaudio_detect_intervals)
     if pgrep is not None:
       pgrep.terminate()
+    
+
 
   headphones_in_query()
   if headphones_in == False:
@@ -259,7 +271,7 @@ if __name__ == "__main__":
     if "Event 'change' on sink #" + sinkNo in line:
       check_headphones()
       check_volume()
-
+      
 
 
 

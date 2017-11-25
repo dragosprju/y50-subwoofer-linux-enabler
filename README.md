@@ -21,7 +21,7 @@ Maximize it for a party by setting _extraVolume_ over `0 ` considerably. Default
 
 ## Warnings
 
-The script will let the program `hda-verb`, which is usually called using `sudo`, to be called *without it* by adding a `sudoers` file to `/etc/sudoers`.d/. It does so for the current user at installation and the `guest` user. **This might be a security issue for some!**
+The script will let the program `hda-verb`, which is usually called using `sudo`, to be called *without it* by adding a `sudoers` file to `/etc/sudoers.d/`. It does so for the current user at installation and the `guest` user. **This might be a security issue for some!**
 
 **I am not responsible if your speakers or subwoofer breaks!** Please inspect the script by yourself if you can, making sure that everything is being protected. I've designed it to cut down anything over maximum possible subwoofer (`100` is for speakers and `87` *weirdly enough* is for the subwoofer), so nothing should break as I use the script myself and do still want a fully working laptop.
 

@@ -236,10 +236,6 @@ def on_exit():
 # Main #
 ########
 if __name__ == "__main__":
-  f = open("/home/dragos/args.log", "a")
-  f.write("\r\n")
-  f.write(str(sys.argv))
-  f.close()
   if ("exit" in sys.argv) or (("pre" in sys.argv) and 
     (("suspend" in sys.argv) or ("hibernate" in sys.argv) or ("hybrid-sleep" in sys.argv))):
     on_exit()

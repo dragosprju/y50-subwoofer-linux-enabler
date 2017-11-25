@@ -6,9 +6,7 @@ This script fixes the issue of the subwoofer of Lenovo Y50 laptops not having an
 
 The script `install.sh` uses `apt-get` once to install `alsa-tools`. If using a non-Debian distribution, use your package manager of choice and continue to use the script (or modify acordingly). Also, use common sense on the security part of these scripts and, if you can, inspect all three scripts (*which are small!*) before anything. (see **Warnings** below). 
 
-**Important**
-
-Use simply `install.sh` to install the script as a **user** service. For me, that means it can detect pulseaudio, which I believe runs in the user space and not in the system space (at least for me). If it doesn't detect pulseaudio, the script wastes 8% of CPU constantly. You can also use`install.sh system` to install the script as a **system** service, because apparently Ubuntu does not work the same for everyone: https://github.com/dragosprju/y50-subwoofer-linux-enabler/pull/3 .
+**Important:** Use simply `install.sh` to install the script as a **user** service. For me, that means it can detect pulseaudio, which I believe runs in the user space and not in the system space (at least for me). If it doesn't detect pulseaudio, the script wastes 8% of CPU constantly. You can also use`install.sh system` to install the script as a **system** service, because apparently Ubuntu does not work the same for everyone: https://github.com/dragosprju/y50-subwoofer-linux-enabler/pull/3 .
 
 Open `subwoofer.py` to modify helpful options:
 

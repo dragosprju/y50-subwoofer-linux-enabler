@@ -31,7 +31,7 @@ The script will let the program `hda-verb`, which is usually called using `sudo`
 
 ~~The script doesn't take care of the subwoofer when you suspend the laptop. Therefore, a crack is heard from the subwoofer when suspending.~~ (now does accordingly: however I have only tested on `pm-suspend` command only, but the way it does it should be generic - inspect `install.sh` and `subwoofer.sh`)
 
-The script is also a dirty way to fix things. A more resposible person would report the problem as a bug and cooperate with the people related to the component that has the issue. (`alsa` I believe)
+The script is also a dirty way to fix things. A more resposible person would report the problem as a bug and cooperate with the people related to the Linux software component that has the issue with the subwoofer itself. (`alsa` I believe)
 
 ## Related links
 

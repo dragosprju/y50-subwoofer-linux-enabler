@@ -8,7 +8,7 @@
 
 ### Even if you inspect the script, it might not be as easy as just incrementing some numbers by 1 every time to safely see if the script works. It might be that the script is now enabling the wrong pins doing bad modifications, enabling high volumes.
 
-### The rest of the README below is also not updated since 4 years ago
+### The rest of the README below was also applicable in 2017. Even if Ubuntu 16.04 is mentioned, do not try it as I do not recommend it anymore!
 
 ---
 

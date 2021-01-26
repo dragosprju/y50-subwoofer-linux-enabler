@@ -1,8 +1,10 @@
 # Lenovo Y50 Subwoofer Enabler for Linux
 
-Hi!
+## NOTE: This project is UNMAINTAINED
 
-This script fixes the issue of the subwoofer of Lenovo Y50 laptops not having any sound on Linux distributions (in a dirty way!). Tested on Ubuntu 16.04 but should work on all Linux distributions.
+## WARNING: This project can BREAK your subwoofer and/or speakers for good, with no chance of remedy. There have been reports about this. It is NOT recommended to use this script anymore! Use it at your own risk!
+
+This script used to fix the issue of the subwoofer of Lenovo Y50 laptops not having any sound on Linux distributions (in a dirty way!). Tested on Ubuntu 16.04. This project is more of a proof-of-concept that the subwoofer on Lenovo Y50 can be fixed.
 
 The script `install.sh` uses `apt-get` once to install `alsa-tools`. If using a non-Debian distribution, use your package manager of choice and continue to use the script (or modify acordingly). Also, use common sense on the security part of these scripts and, if you can, inspect all three scripts (*which are small!*) before anything. (see **Warnings** below). 
 

@@ -4,7 +4,7 @@
 
 ## NOTE: This project is DEPRECATED. My Lenovo Y50 is not my main laptop anymore, and I use only Windows on it as of now.
 
-## WARNING: This project can BREAK your subwoofer and/or speakers for good, with no chance of remedy. There have been reports about the subwoofer and/or speakers breaking as of January 2021. It is NOT recommended to use this script anymore! 
+## WARNING: This deprecated project can BREAK your subwoofer and/or speakers for good, with no chance of remedy. There have been reports about the subwoofer and/or speakers breaking as of January 2021. It is NOT recommended to use this script anymore! 
 
 ## Instead, please help fix the subwoofer on Lenovo Y50 on Linux as it should have been done from the beginning, by reporting the bug on ALSA bug tracker. Somebody already reported this, so you should reply to this bug thread: https://bugzilla.kernel.org/show_bug.cgi?id=204833.
 

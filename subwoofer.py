@@ -17,10 +17,14 @@ speakerBalance = 0
 # (broken debalanced headphones and whatnot)
 headphonesBalance = 0
 # This helps the subwoofer get the correct left/right stereo in so it sounds like
-subwooferBalance = -25		# Default: -25
+subwooferBalance = 0		        # Default: -25
 # This is extra volume for the subwoofer, independent of what stereo balance it gets as input
-extraVolume = 11 		# Default: -11. New default: 11; 
+extraVolume = 0 		            # Default: -11
 pulseaudio_detect_intervals = 5 # Default: 5. No. of seconds between pulseaudio detects.
+
+# The default of this worked on Ubuntu 16.10. It has been reported the script does not work anymore as of January 2021, and so this has been set to 0 to disable the script.
+# This number is very important and as of January 2021, it is uncertain what number should be here.
+subwoofer_cutoff_volume = 0     # Default: 87 (again, for Ubuntu 16.10 ONLY and not for >newer< Ubuntus)
 
 # These are needed so the detection of volume change / headphones plug in or out not be done
 # for all of the enabled audio devices. Change to the alternatives if subwoofer doesn't enable
@@ -46,12 +50,15 @@ pactl = None
 ################
 
 def enable_subwoofer():
-  call(["sudo", "hda-verb", dev, "0x17", "SET_POWER", "0x0"], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
-  call(["sudo", "hda-verb", dev, "0x1a", "SET_POWER", "0x0"], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+  # As of January 2021, these have to be checked as they are most likely not correct anymore.
+  #call(["sudo", "hda-verb", dev, "0x17", "SET_POWER", "0x0"], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+  #call(["sudo", "hda-verb", dev, "0x1a", "SET_POWER", "0x0"], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
 
-  call(["sudo", "hda-verb", dev, "0x17", "0x300", "0xb000"], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
-  call(["sudo", "hda-verb", dev, "0x17", "0x707", "0x40"], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
-  call(["sudo", "hda-verb", dev, "0x1a", "0x707", "0x25"], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+  # As of January 2021, these have to be checked as they are most likely not correct anymore.
+  #call(["sudo", "hda-verb", dev, "0x17", "0x300", "0xb000"], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+  #call(["sudo", "hda-verb", dev, "0x17", "0x707", "0x40"], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+  #call(["sudo", "hda-verb", dev, "0x1a", "0x707", "0x25"], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+  pass
 
 def disable_subwoofer():
   call(["sudo", "hda-verb", dev, "0x1a", "0x707", "0x20"], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
@@ -59,8 +66,9 @@ def disable_subwoofer():
 def set_subwoofer_volume(volumes):
   valL = 0xa000 + volumes[0]
   valR = 0x9000 + volumes[1]
-  call(["sudo", "hda-verb", dev, "0x03", "0x300", hex(valL)], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
-  call(["sudo", "hda-verb", dev, "0x03", "0x300", hex(valR)], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+  # As of January 2021, these have to be checked as they are most likely not correct anymore.
+  #call(["sudo", "hda-verb", dev, "0x03", "0x300", hex(valL)], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+  #call(["sudo", "hda-verb", dev, "0x03", "0x300", hex(valR)], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
   print "Subwoofer volumes set. Left: " + str(volumes[0]) + ". Right: " + str(volumes[1]) + "."
 
 def calculate_subwoofer_volume(spk_vol, balance):
@@ -73,10 +81,10 @@ def calculate_subwoofer_volume(spk_vol, balance):
     balL = balL - balance
     balR = 100
   
-  valL = 87 * spk_vol * balL / 100 / 100 + extraVolume
-  valR = 87 * spk_vol * balR / 100 / 100 + extraVolume
+  valL = subwoofer_cutoff_volume * spk_vol * balL / 100 / 100 + extraVolume
+  valR = subwoofer_cutoff_volume * spk_vol * balR / 100 / 100 + extraVolume
 
-  vals = calibrate87([valL, valR])
+  vals = calibrate_cutoff_volume([valL, valR])
 
   return vals
 
@@ -212,8 +220,8 @@ def calibrate(volumes, limit):
 def calibrate100(volumes):
   return calibrate(volumes, 100)
 
-def calibrate87(volumes):
-  return calibrate(volumes, 87)  
+def calibrate_cutoff_volume(volumes):
+  return calibrate(volumes, subwoofer_cutoff_volume)  
 
 def check_volume(): 
   global curr_volume

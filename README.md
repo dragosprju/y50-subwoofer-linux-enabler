@@ -4,9 +4,9 @@
 
 ## WARNING: This project can BREAK your subwoofer and/or speakers for good, with no chance of remedy. There have been reports about the subwoofer and/or speakers breaking as of January 2021. It is NOT recommended to use this script anymore! 
 
-**Even if you inspect the script, it might not be as easy as just incrementing some numbers by 1 every time to safely see if the script works. It might be that the script is now enabling the wrong pins doing bad modifications, enabling high volumes.**
+### Even if you inspect the script, it might not be as easy as just incrementing some numbers by 1 every time to safely see if the script works. It might be that the script is now enabling the wrong pins doing bad modifications, enabling high volumes.
 
-**The rest of the README below is also not updated since 4 years ago**.
+### The rest of the README below is also not updated since 4 years ago
 
 This script used to fix the issue of the subwoofer of Lenovo Y50 laptops not having any sound on Linux distributions (in a dirty way!). Tested on Ubuntu 16.04. This project is more of a proof-of-concept that the subwoofer on Lenovo Y50 can be fixed.
 

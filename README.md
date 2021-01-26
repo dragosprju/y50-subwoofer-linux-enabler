@@ -2,14 +2,15 @@
 
 ---
 
-## Please help make the subwoofer on Lenovo Y50 work on Linux by replying to this bug on ALSA: https://bugzilla.kernel.org/show_bug.cgi?id=204833.
 ## NOTE: This project is DEPRECATED. My Lenovo Y50 is not my main laptop anymore, and I use only Windows on it as of now.
 
 ## WARNING: This project can BREAK your subwoofer and/or speakers for good, with no chance of remedy. There have been reports about the subwoofer and/or speakers breaking as of January 2021. It is NOT recommended to use this script anymore! 
 
-### Even if you inspect the script, it might not be as easy as just incrementing some numbers by 1 every time to safely see if the script works. It might be that the script is now enabling the wrong pins by doing bad modifications, by enabling high volumes.
+## Instead, please help fix the subwoofer on Lenovo Y50 on Linux as it should have been done from the beginning, by reporting the bug on ALSA bug tracker. Somebody already reported this, so you should reply to this bug thread: https://bugzilla.kernel.org/show_bug.cgi?id=204833.
 
-### The rest of the README below was also applicable in 2017. Even if Ubuntu 16.04 is mentioned, do not try it as I do not recommend it anymore!
+### Even if you inspect the script, it might not be as easy as just incrementing some numbers by 1 every time to safely see if the script can make your subwoofer worker. It might be that the script is now enabling the wrong pins by doing bad modifications, by enabling high volumes.
+
+#### The rest of the README below was also applicable in 2017. It is not applicable anymore. Even if Ubuntu 16.04 is mentioned, do not try this script on Ubuntu 16.04 as other updates on Ubuntu 16.04 might have happened too that would make this script incompatible and risky. I do not recommend this script anymore!
 
 ---
 

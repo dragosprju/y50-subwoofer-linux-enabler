@@ -2,11 +2,11 @@
 
 ---
 
-## NOTE: This project is DEPRECATED
+## NOTE: This project is DEPRECATED. My Lenovo Y50 is not my main laptop anymore, and I use only Windows on it as of now.
 
 ## WARNING: This project can BREAK your subwoofer and/or speakers for good, with no chance of remedy. There have been reports about the subwoofer and/or speakers breaking as of January 2021. It is NOT recommended to use this script anymore! 
 
-### Even if you inspect the script, it might not be as easy as just incrementing some numbers by 1 every time to safely see if the script works. It might be that the script is now enabling the wrong pins doing bad modifications, enabling high volumes.
+### Even if you inspect the script, it might not be as easy as just incrementing some numbers by 1 every time to safely see if the script works. It might be that the script is now enabling the wrong pins by doing bad modifications, by enabling high volumes.
 
 ### The rest of the README below was also applicable in 2017. Even if Ubuntu 16.04 is mentioned, do not try it as I do not recommend it anymore!
 
